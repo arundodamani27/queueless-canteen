@@ -1,5 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from .database import engine
+from .database import engine, Base
+from . import models
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="QueueLess Canteen API")
 
@@ -13,8 +17,4 @@ app.add_middleware(
 
 @app.get("/")
 def home():
-    return {"message": "QueueLess Canteen Backend Running"}
-
-@app.get("/health")
-def health():
-    return {"status": "ok"}
+    return {"message": "Backend connected to PostgreSQL"}
