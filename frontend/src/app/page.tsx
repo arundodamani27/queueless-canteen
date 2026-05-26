@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   QrCode,
@@ -92,9 +93,11 @@ export default function Home() {
             </p>
 
             <div className="flex gap-4">
-              <button className="bg-cyan-500 hover:bg-cyan-600 px-6 py-3 rounded-xl font-semibold flex items-center gap-2 transition">
-                Get Started <ArrowRight size={18} />
-              </button>
+              <Link href="/menu">
+  <button className="bg-cyan-500 hover:bg-cyan-600 px-6 py-3 rounded-xl font-semibold flex items-center gap-2 transition">
+    Get Started <ArrowRight size={18} />
+  </button>
+</Link>
 
               <button className="border border-slate-700 hover:border-cyan-400 px-6 py-3 rounded-xl transition">
                 Learn More
