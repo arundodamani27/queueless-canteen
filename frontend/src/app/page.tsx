@@ -3,109 +3,131 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
-  QrCode,
   Clock3,
   CreditCard,
-  Bot,
   CheckCircle,
   ArrowRight,
   UtensilsCrossed,
+  QrCode,
+  Coffee,
 } from "lucide-react";
 
 export default function Home() {
-  const features = [
+  const benefits = [
     {
-      icon: <Bot size={28} />,
-      title: "Virtual Billing Agent",
-      desc: "Acts like a digital billing counter during rush hours.",
+      icon: <Clock3 size={28} />,
+      title: "Faster Ordering",
+      desc: "Skip long queues and place your order within seconds.",
     },
     {
       icon: <CreditCard size={28} />,
-      title: "Secure Digital Payments",
-      desc: "Students can pay instantly and receive a live bill.",
+      title: "Instant Payments",
+      desc: "Pay online securely and avoid cash counter delays.",
     },
     {
-      icon: <Clock3 size={28} />,
-      title: "Save Time",
-      desc: "Reduce long queues and waiting during lunch rush.",
+      icon: <CheckCircle size={28} />,
+      title: "Digital Receipt",
+      desc: "Show your live receipt and collect food instantly.",
     },
     {
       icon: <QrCode size={28} />,
-      title: "QR Access",
-      desc: "Quick access by scanning QR code placed in the canteen.",
+      title: "Quick Access",
+      desc: "Open instantly using QR code from the canteen.",
     },
   ];
 
   const steps = [
     {
-      title: "Scan QR",
-      desc: "Students scan the canteen QR code during rush hours.",
       icon: <QrCode size={32} />,
+      title: "Open QueueLess",
+      desc: "Scan QR code or open the website from your phone.",
     },
     {
-      title: "Select Food",
-      desc: "Choose meals, snacks, or beverages using the virtual counter.",
       icon: <UtensilsCrossed size={32} />,
+      title: "Choose Food",
+      desc: "Browse menu and add your favorite food to cart.",
     },
     {
-      title: "Pay Instantly",
-      desc: "Complete payment securely through the app.",
       icon: <CreditCard size={32} />,
+      title: "Pay Online",
+      desc: "Complete secure payment in just a few taps.",
     },
     {
-      title: "Show Live Bill",
-      desc: "Display digital bill at serving counter and collect food.",
       icon: <CheckCircle size={32} />,
+      title: "Collect Food",
+      desc: "Show digital receipt and collect your food.",
     },
   ];
 
+  const menuPreview = [
+    { name: "Veg Meals", price: "₹50" },
+    { name: "Tea", price: "₹10" },
+    { name: "Coffee", price: "₹15" },
+    { name: "Sandwich", price: "₹40" },
+  ];
+
   return (
-    <main className="min-h-screen bg-slate-950 text-white">
+    <main className="min-h-screen bg-slate-950 text-white overflow-x-hidden">
       {/* Navbar */}
-      <nav className="flex items-center justify-between px-8 py-6 border-b border-slate-800">
-        <h1 className="text-2xl font-bold text-cyan-400">QueueLess Canteen</h1>
-        <button className="bg-cyan-500 hover:bg-cyan-600 px-5 py-2 rounded-xl font-medium transition">
-          Try Demo
-        </button>
+      <nav className="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800 px-8 py-5 flex justify-between items-center">
+        <h1 className="text-2xl font-bold text-cyan-400">
+          QueueLess Canteen
+        </h1>
+
+        <Link href="/menu">
+          <button className="bg-cyan-500 hover:bg-cyan-600 px-5 py-2 rounded-xl font-medium transition">
+            Order Now
+          </button>
+        </Link>
       </nav>
 
-      {/* Hero Section */}
-      <section className="px-8 py-20 md:px-20">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+      {/* Hero */}
+      <section className="relative px-8 py-24 md:px-20">
+        <div className="absolute top-10 left-10 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 right-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl"></div>
+
+        <div className="grid md:grid-cols-2 gap-12 items-center relative z-10">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
             <p className="text-cyan-400 font-semibold mb-4">
-              Smart Rush Hour Canteen Solution
+              Smart Campus Food Ordering
             </p>
 
             <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
-              Skip Long Lunch Queues with a{" "}
-              <span className="text-cyan-400">Virtual Counter</span>
+              Skip the Queue.
+              <br />
+              <span className="text-cyan-400">Order in Seconds.</span>
             </h1>
 
             <p className="text-slate-300 text-lg mb-8 leading-relaxed">
-              QueueLess Canteen reduces rush-hour congestion by providing a
-              digital self-ordering counter that works alongside the traditional
-              billing system.
+              Browse menu, pay instantly, and collect your food without waiting
+              in long canteen lines.
             </p>
 
-            <div className="flex gap-4">
+            <div className="flex gap-4 flex-wrap">
               <Link href="/menu">
-  <button className="bg-cyan-500 hover:bg-cyan-600 px-6 py-3 rounded-xl font-semibold flex items-center gap-2 transition">
-    Get Started <ArrowRight size={18} />
-  </button>
-</Link>
+                <button className="bg-cyan-500 hover:bg-cyan-600 px-6 py-3 rounded-xl font-semibold flex items-center gap-2 transition">
+                  Start Ordering <ArrowRight size={18} />
+                </button>
+              </Link>
 
-              <button className="border border-slate-700 hover:border-cyan-400 px-6 py-3 rounded-xl transition">
-                Learn More
+              <button
+                onClick={() =>
+                  document
+                    .getElementById("how-it-works")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+                className="border border-slate-700 hover:border-cyan-400 px-6 py-3 rounded-xl transition"
+              >
+                How It Works
               </button>
             </div>
           </motion.div>
 
-          {/* Mock Digital Bill */}
+          {/* Digital Receipt Mock */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -115,13 +137,13 @@ export default function Home() {
             <div className="bg-white text-black rounded-3xl shadow-2xl w-[340px] p-6">
               <div className="text-center border-b pb-4">
                 <h2 className="font-bold text-xl">QUEUELESS CANTEEN</h2>
-                <p className="text-sm">Digital Live Bill</p>
+                <p className="text-sm">Digital Receipt</p>
               </div>
 
               <div className="mt-5 space-y-3 text-sm">
                 <div className="flex justify-between">
-                  <span>Bill No</span>
-                  <span>V2041</span>
+                  <span>Order No</span>
+                  <span>ORD2041</span>
                 </div>
 
                 <div className="flex justify-between">
@@ -150,24 +172,39 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Problem Section */}
+      {/* Benefits */}
       <section className="px-8 md:px-20 py-20 bg-slate-900">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-6">The Problem</h2>
-          <p className="text-slate-300 text-lg leading-relaxed">
-            During lunch breaks, hundreds of engineering, MBA, and MCA students
-            rush to a single billing counter. This creates long queues, delays
-            service, and causes frustration.
+        <div className="text-center mb-14">
+          <h2 className="text-4xl font-bold mb-4">Why Students Love It</h2>
+          <p className="text-slate-300 text-lg">
+            Faster, easier, and stress-free food ordering.
           </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {benefits.map((item, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ y: -8 }}
+              className="bg-slate-950 border border-slate-800 p-6 rounded-2xl"
+            >
+              <div className="text-cyan-400 mb-4">{item.icon}</div>
+              <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
+              <p className="text-slate-400">{item.desc}</p>
+            </motion.div>
+          ))}
         </div>
       </section>
 
-      {/* Solution */}
-      <section className="px-8 md:px-20 py-20">
+      {/* How It Works */}
+      <section
+        id="how-it-works"
+        className="px-8 md:px-20 py-20"
+      >
         <div className="text-center mb-14">
-          <h2 className="text-4xl font-bold mb-4">Our Solution</h2>
+          <h2 className="text-4xl font-bold mb-4">How It Works</h2>
           <p className="text-slate-300 text-lg">
-            A smart virtual billing counter activated only during rush hours.
+            Get your food in 4 simple steps.
           </p>
         </div>
 
@@ -186,25 +223,27 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Features */}
+      {/* Menu Preview */}
       <section className="px-8 md:px-20 py-20 bg-slate-900">
         <div className="text-center mb-14">
-          <h2 className="text-4xl font-bold mb-4">Key Features</h2>
+          <h2 className="text-4xl font-bold mb-4">Popular Menu Items</h2>
           <p className="text-slate-300 text-lg">
-            Built for speed, scalability, and student convenience.
+            Quick favorites students order every day.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((feature, i) => (
+        <div className="grid md:grid-cols-4 gap-8">
+          {menuPreview.map((item, i) => (
             <motion.div
               key={i}
-              whileHover={{ y: -8 }}
-              className="bg-slate-950 border border-slate-800 p-6 rounded-2xl"
+              whileHover={{ scale: 1.05 }}
+              className="bg-slate-950 border border-slate-800 p-6 rounded-2xl text-center"
             >
-              <div className="text-cyan-400 mb-4">{feature.icon}</div>
-              <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-              <p className="text-slate-400">{feature.desc}</p>
+              <div className="flex justify-center mb-4 text-cyan-400">
+                <Coffee size={32} />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">{item.name}</h3>
+              <p className="text-2xl font-bold text-cyan-400">{item.price}</p>
             </motion.div>
           ))}
         </div>
@@ -213,21 +252,23 @@ export default function Home() {
       {/* CTA */}
       <section className="px-8 md:px-20 py-20 text-center">
         <h2 className="text-4xl font-bold mb-6">
-          Transform Your College Canteen Experience
+          Hungry? Skip the Queue Now.
         </h2>
+
         <p className="text-slate-300 text-lg mb-8 max-w-2xl mx-auto">
-          QueueLess helps reduce waiting time and improves food service
-          efficiency during peak hours.
+          Order food faster and enjoy a smooth canteen experience.
         </p>
 
-        <button className="bg-cyan-500 hover:bg-cyan-600 px-8 py-4 rounded-2xl font-semibold text-lg transition">
-          Launch Virtual Counter
-        </button>
+        <Link href="/menu">
+          <button className="bg-cyan-500 hover:bg-cyan-600 px-8 py-4 rounded-2xl font-semibold text-lg transition">
+            Order Food Now
+          </button>
+        </Link>
       </section>
 
       {/* Footer */}
       <footer className="border-t border-slate-800 px-8 md:px-20 py-8 text-center text-slate-400">
-        © 2026 QueueLess Canteen • MCA Final Year Project
+        © 2026 QueueLess Canteen
       </footer>
     </main>
   );

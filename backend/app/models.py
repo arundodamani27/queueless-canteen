@@ -21,4 +21,5 @@ class Order(Base):
     total_amount = Column(Float)
     payment_status = Column(String, default="pending")
     order_status = Column(String, default="pending")
+    customer_name = Column(String)
     created_at = Column(DateTime, default=datetime.utcnow)
